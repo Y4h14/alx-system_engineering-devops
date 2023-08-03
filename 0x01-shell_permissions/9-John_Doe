@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chmod -v 763 hello
+sudo chmod -v 763 %A hello
