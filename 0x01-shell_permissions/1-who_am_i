@@ -1,2 +1,4 @@
 #!/bin/bash
-whoami
+whoami /n
+
+
