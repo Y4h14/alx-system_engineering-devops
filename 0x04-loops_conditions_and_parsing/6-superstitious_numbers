@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#display your luck based on numbers
+a=1
+while [[ $a -le 20 ]];
+do
+	echo $a
+	case $a in
+		4)
+			echo "bad luck in China"
+			;;
+		9)
+			echo "bad luk in Japan"
+			;;
+		17)
+			echo "bad luck in Italy"
+			;;
+	esac
+	((a++))
+done

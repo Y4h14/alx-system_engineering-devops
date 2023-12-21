@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#display your luck based on numbers
+a=1
+while [[ $a -le 10 ]];
+do
+	if [[ $a -eq 4 ]]
+	then
+		echo "bad Luck"
+	elif [[ $a -eq 8 ]]
+	then
+		echo "good Luck"
+	else 
+		echo "Best School"
+	fi
+	((a++))
+done
