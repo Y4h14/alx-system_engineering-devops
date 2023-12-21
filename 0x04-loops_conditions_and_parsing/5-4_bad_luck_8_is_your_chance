@@ -5,10 +5,10 @@ while [[ $a -le 10 ]];
 do
 	if [[ $a -eq 4 ]]
 	then
-		echo "bad Luck"
+		echo "bad luck"
 	elif [[ $a -eq 8 ]]
 	then
-		echo "good Luck"
+		echo "good luck"
 	else 
 		echo "Best School"
 	fi
