@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#a procces that's not easily killed
+function wont_stop
+{
+	echo "I am invincible!!!"
+	exit 0
+}
+trap wont_stop SIGTERM
+for ((;;));
+do
+	echo "To infinity and beyond"
+	sleep 2
+done

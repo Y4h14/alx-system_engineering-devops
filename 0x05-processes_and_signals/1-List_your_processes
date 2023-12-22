@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#diplay all processes including background processes
+ps auxf
