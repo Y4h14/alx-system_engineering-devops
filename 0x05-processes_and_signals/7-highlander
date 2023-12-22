@@ -3,7 +3,6 @@
 function wont_stop
 {
 	echo "I am invincible!!!"
-	exit 0
 }
 trap wont_stop SIGTERM
 for ((;;));
