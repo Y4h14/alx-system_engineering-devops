@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#a procces that's not easily killed
+function wont_stop
+{
+	echo "I hate the kill command"
+}
+function _sigint_
+{
+	echo "Y U no love me?!"
+}
+function _terminate_
+{
+	rm -f "/var/run/myscript.pid"
+	echo
+}
+trap _terminate_ SIGQUIT
+trap _terminate_ SIGTERM
+trap _sigint_ SIGINT
+trap wont_stop SIGTERM
+echo "$$" > "/var/run/myscript.pid"
+for ((;;));
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
