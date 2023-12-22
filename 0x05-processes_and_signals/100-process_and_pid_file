@@ -11,7 +11,7 @@ function _sigint_
 function _terminate_
 {
 	rm -f "/var/run/myscript.pid"
-	echo
+	exit 0
 }
 trap _terminate_ SIGQUIT
 trap _terminate_ SIGTERM
