@@ -14,9 +14,8 @@ function _terminate_
 	exit 1
 }
 trap _terminate_ SIGQUIT
-trap _terminate_ SIGTERM
+trap wont_stop; _terminate_ SIGTERM
 trap _sigint_ SIGINT
-trap wont_stop SIGTERM
 echo "$$" > "/var/run/myscript.pid"
 for ((;;));
 do
