@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#listn on port 98 on localhost
+nc -l 98
