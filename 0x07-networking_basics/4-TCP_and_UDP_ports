@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Display ports
+
+sudo netstat -lp
