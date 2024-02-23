@@ -1,6 +1,5 @@
-#Filename: 2-execute_a_command.pp
+# create a manifest that kills a process named killmenow
 
 exec { 'killmenouw':
-    command => 'pkill -f killmenow',
-    onlyif  => 'pgrep -f killmenow',
+    command => 'pkill -f killmenow'
 }
