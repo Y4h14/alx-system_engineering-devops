@@ -1,6 +1,7 @@
 # modifying client's ssh config file
+include stdlib
 
-file_line {'diable pass auth'
+file_line {'diable pass auth':
   ensure  => present,
   path    => '/etc/ssh/ssh_config',
   line    => '   PasswordAuthentication no',
