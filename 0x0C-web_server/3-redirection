@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine to install and run nginx
-# listening on port 80
-# return "Hello World!" 
+# Configre nginx to redirect 
 
 sudo apt update
 sudo apt install -y nginx
@@ -15,7 +13,11 @@ printf %s "server {
 	listen	80 default_server;
 	listen	[::]:80 default_server;
 	root	/etc/nginx/html;
-	index	index.html;
-}" | sudo tee /etc/nginx/site_available/default
+	index	index.html index.htm;
+
+	location /redirect_me {
+	return 301 http://googl.com/;
+	}
+}" > /etc/nginx/site_available/default
 
 sudo service nginx restart
