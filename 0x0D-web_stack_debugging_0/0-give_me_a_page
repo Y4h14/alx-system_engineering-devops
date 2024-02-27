@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Fixing docker container to display the page
+sudo service apache2 start
