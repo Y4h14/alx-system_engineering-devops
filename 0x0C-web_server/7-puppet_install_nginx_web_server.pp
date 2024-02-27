@@ -1,25 +1,30 @@
-# install and configure nginx
+# Install and configure Nginx
 
-package {'nginx'
+package { 'nginx':
   ensure => 'present',
 }
 
-exec {'install':
-  command  => 'sudo apt-get update; sudo apt-get -y install nginx',
-  provider => shell,
-}
-
-exec {'Hello':
-  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html''
+exec { 'install':
+  command  => 'sudo apt-get update && sudo apt-get -y install nginx',
   provider => 'shell',
+  require  => Package['nginx'],
 }
 
-exec {'run':
-  command  => 'sudo sed -i 's/listen 80 default_server;/listen 81;/g' /etc/nginx/sites-available/default',
-  provider => shell',
+file { '/var/www/html/index.html':
+  ensure  => 'file',
+  content => 'Hello World!',
+  require => Exec['install'],
 }
 
-exec {'run':
+exec { 'configure':
+  command  => 'sudo sed -i "s/listen 80 default_server;/listen 81;/g" /etc/nginx/sites-available/default',
+  provider => 'shell',
+  require  => File['/var/www/html/index.html'],
+}
+
+exec { 'restart':
   command  => 'sudo service nginx restart',
-  provider => shell,
+  provider => 'shell',
+  require  => Exec['configure'],
 }
+
