@@ -6,18 +6,18 @@ sudo apt install -y nginx
 
 sudo service nginx start
 
-mkdir /etc/nginx/html
-echo "Hello World!" > /etc/nginx/html/index.html
+
+echo "Hello World!" > /var/www/html/index.html
 
 printf %s "server {
 	listen	80 default_server;
 	listen	[::]:80 default_server;
-	root	/etc/nginx/html;
-	index	index.html index.htm;
+	root	/var/www/html;
+	index	index.html;
 
 	location /redirect_me {
-	return 301 http://googl.com/;
+	return 301 http://googl.com;
 	}
-}" > /etc/nginx/site_available/default
+}" > /etc/nginx/sites-available/default
 
 sudo service nginx restart
