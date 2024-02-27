@@ -3,7 +3,7 @@
 # listening on port 80
 # return "Hello World!" 
 
-sudo apt update
+sudo apt  -y update
 sudo apt install -y nginx
 
 sudo service nginx start
@@ -19,4 +19,4 @@ echo "<!DOCTYPE html>
 </body>
 </html>" | sudo tee /var/www/html/index.html
 
-sudo service nginx reload
+sudo service nginx restart
