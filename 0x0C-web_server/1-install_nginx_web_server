@@ -11,4 +11,11 @@ sudo service nginx start
 mkdir /etc/nginx/html
 echo "Hello World!" | sudo tee /etc/nginx/html/index.html
 
+printf %s "server {
+	listen	80 default_server;
+	listen	[::]:80 default_server;
+	root	/etc/nginx/html;
+	index	index.html;
+}" > /etc/nginx/site_available/default
+
 sudo service nginx restart
