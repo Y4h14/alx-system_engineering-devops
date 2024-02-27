@@ -15,6 +15,6 @@ printf %s "server {
 	listen	[::]:80 default_server;
 	root	/var/www/html;
 	index	index.html;
-}" | sudo tee /etc/nginx/site-available/default
+}" | sudo tee /etc/nginx/sites-available/default
 
 sudo service nginx restart
