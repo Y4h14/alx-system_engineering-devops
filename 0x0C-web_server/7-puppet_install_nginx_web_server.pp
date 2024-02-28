@@ -1,8 +1,7 @@
 # Configure nginx server
-include stdlib
 
 exec { 'apt-update':
-  command => 'apt-get update',
+  command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
