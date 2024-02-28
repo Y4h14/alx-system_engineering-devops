@@ -1,30 +1,44 @@
-# Install and configure Nginx
+# Configure nginx server
+include stdlib
 
-package { 'nginx':
-  ensure => 'present',
+exec { 'apt-update':
+  command => 'apt-get update',
 }
 
-exec { 'install':
-  command  => 'sudo apt-get update && sudo apt-get -y install nginx',
-  provider => 'shell',
-  require  => Package['nginx'],
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['apt-update'],
+}
+
+service { 'nginx':
+  ensure     => running,
+  enable     => true,
+  hasrestart => true,
+  require    => Package['nginx'],
 }
 
 file { '/var/www/html/index.html':
-  ensure  => 'file',
+  ensure  => file,
   content => 'Hello World!',
-  require => Exec['install'],
+  require => Package['nginx'],
 }
 
-exec { 'configure':
-  command  => 'sudo sed -i "s/listen 80 default_server;/listen 81;/g" /etc/nginx/sites-available/default',
-  provider => 'shell',
-  require  => File['/var/www/html/index.html'],
-}
+file { '/etc/nginx/sites-available/default':
+  ensure  => present,
+  content => "server {
+        listen  80 default_server;
+        listen  [::]:80 default_server;
+        root    /var/www/html;
+        index   index.html;
 
-exec { 'restart':
-  command  => 'sudo service nginx restart',
-  provider => 'shell',
-  require  => Exec['configure'],
+        location /redirect_me {
+        return 301 http://googl.com;
+        }
+        error_page 404 /404.html;
+        location /404 {
+        root /var/www/html;
+        internal;
+        }",
+  notify  => Service['nginx'],
 }
 
