@@ -50,3 +50,4 @@ backend http_back
 " > /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
+sudo systemctl enable haproxy
