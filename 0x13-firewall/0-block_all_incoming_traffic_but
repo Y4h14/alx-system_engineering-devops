@@ -1,0 +1,6 @@
+sudo ufw allow ssh
+sudo ufw allow 22
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow OpenSSH
+sudo ufw enable
