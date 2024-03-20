@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+# fix the container to run nginx as the nginx user
