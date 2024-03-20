@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
 # fix the container to run nginx as the nginx user
+sudo useradd -r nginx;
+sudo sed -i 's/^user .*/user ngix;/' "/etc/nginx/nginx.conf"
+sudo sed -i 's/^listen 80;/listen 8080;/' "/etc/nginx/nginx.conf"
+sudo systemctl restart nginx;
