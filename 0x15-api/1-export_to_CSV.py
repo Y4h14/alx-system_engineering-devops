@@ -22,6 +22,6 @@ if __name__ == '__main__':
         writer = csv.writer(f)
         writer.writerow(["USER_ID", "USERNAME",
                          "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        [writer.writerow([user_id, user_req['name'],
+        [writer.writerow([user_id, user_req['username'],
                           t.get('completed'),
                           t.get('title')]) for t in todo_req]
