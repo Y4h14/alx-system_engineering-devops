@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" script for getting employee progress"""
-import requests
+""" script creating a file witth all employees data"""
 import json
+import requests
 
 
 if __name__ == '__main__':

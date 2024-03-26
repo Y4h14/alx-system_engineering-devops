@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ script for getting employee progress"""
-from sys import argv
 import requests
+from sys import argv
 
 
 if __name__ == '__main__':
@@ -20,4 +20,5 @@ if __name__ == '__main__':
     print(" tasks({}/{}):".format(done_tasks, total_tasks))
 
     for task in todo_req:
-        print("\t {}".format(task['title']))
+        if task['completed'] is True:
+            print("\t {}".format(task['title']))

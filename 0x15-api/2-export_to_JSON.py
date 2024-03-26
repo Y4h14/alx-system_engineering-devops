@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-""" script for getting employee progress"""
-from sys import argv
-import requests
+""" script for creating a json file of the data"""
 import json
+import requests
+from sys import argv
 
 
 if __name__ == '__main__':
@@ -21,5 +21,5 @@ if __name__ == '__main__':
         json.dump({user_id: [{
             "task": t.get('title'),
             "completed": t.get('completed'),
-            "username": user_req['name']
+            "username": user_req['username']
             } for t in todo_req]}, f)

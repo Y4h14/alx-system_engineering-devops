@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-""" script for getting employee progress"""
-from sys import argv
-import requests
+""" Creates a CSV file of the data"""
 import csv
+import requests
+from sys import argv
 
 
 if __name__ == '__main__':
@@ -18,9 +18,10 @@ if __name__ == '__main__':
     total_tasks = sum(1 for task in todo_req)
     file_name = "{}.csv".format(user_id)
 
-with open(file_name, 'w', newline='') as f:
-    writer = csv.writer(f)
-    writer.writerow(["USER_ID", "USERNAME",
-                     "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-    [writer.writerow([user_id, user_req['name'],
-                     t.get('completed'), t.get('title')]) for t in todo_req]
+    with open(file_name, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["USER_ID", "USERNAME",
+                         "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        [writer.writerow([user_id, user_req['name'],
+                          t.get('completed'),
+                          t.get('title')]) for t in todo_req]
