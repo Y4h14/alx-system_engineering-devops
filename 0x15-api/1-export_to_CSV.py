@@ -18,8 +18,6 @@ if __name__ == '__main__':
 
     with open(file_name, 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerow(["USER_ID", "USERNAME",
-                         "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         [writer.writerow([user_id, user_req['username'],
                           t.get('completed'),
                           t.get('title')]) for t in todo_req]
