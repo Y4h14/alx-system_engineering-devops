@@ -6,25 +6,19 @@ import requests
 def recurse(subreddit, hot_list=[], after="", count=0):
     """queries the Reddit API and gets a lits of titles of all hot
     articles for a given subreddit"""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-               }
-    params = {'after': after,
-              'count': count,
-              'limit': 100}
+    url = 'http://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    headers = {'User-Agent': '0x16-api_advanced:project:v1.0.0'}
+    params = {'limit': 100}
+    if after is not None:
+        params['after'] = after
 
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 404:
-        return None
-
-    data = response.json().get("data")
-    after = data.get("after")
-    count += data.get("dist")
-    for i in data.get("children"):
-        hot_list.append(i.get("data").get("title"))
-
-    if after is None:
-        return hot_list
+    res = requests.get(url, headers=headers, params=params)
+    if res.status_code == 200:
+        posts = res.json().get('data', {}).get('children', [])
+        if not posts:
+            return hot_list
+        [hot_list.append(post['data']['title']) for post in posts]
+        new_after = res.json().get('data', {}).get('after')
+        return recurse(subreddit, hot_list, new_after)
     else:
-        return recurse(subreddit, hot_list, after, count)
+        return None
