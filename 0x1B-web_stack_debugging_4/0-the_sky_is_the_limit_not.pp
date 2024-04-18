@@ -1,5 +1,4 @@
 # updating traffic ulimit
- 
 exec { 'ulimit-update':
   command  => 'sed -i "s/15/2001/" /etc/default/nginx',
   provider => 'shell',
@@ -8,6 +7,6 @@ exec { 'ulimit-update':
 
 # Restart Nginx
 exec { 'nginx-restart':
-  command => 'sudo service nginx restart',
-  provider    => 'shell',
+  command  => 'sudo service nginx restart',
+  provider => 'shell',
 }
