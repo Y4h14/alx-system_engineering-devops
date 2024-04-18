@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name 34.203.29.40 web-01.yahiadevelops.tech 0.0.0.0 127.0.0.1;
+
+    location /airbnb-dynamic/number_odd_or_even/(\d+) {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/oddoreven.sock;
+    }
+}
